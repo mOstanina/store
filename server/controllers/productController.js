@@ -2,6 +2,7 @@ const {Product} = require("../models/models")
 const ErrorApi = require("../error/ErrorApi")
 const uuid = require("uuid")
 const path = require("path")
+const {where} = require("sequelize");
 
 class ProductController {
     async create(req, res, next){
@@ -21,14 +22,40 @@ class ProductController {
     }
 
     async getAll(req, res){
-        const result = await Product.findAll({
-            attributes: [`idProduct`, `weight`, `size`, `idManufacturer`, `price`, `category`, `img`]
-        })
+        let {category, page} = req.query
+        page = page || 1
+        let limit = 6
+        let offset = page * limit - limit
+        let result
+
+        if(category){
+            result = await Product.findAndCountAll({
+                attributes: ["idProduct", "weight", "size", "idManufacturer", "price", "category", "img", "description"],
+                where: {category},
+                limit,
+                offset
+            })
+        } else {
+            result = await Product.findAndCountAll({
+                attributes: ["idProduct", "weight", "size", "idManufacturer", "price", "category", "img", "description"],
+                limit,
+                offset
+            })
+        }
+
         return res.json(result)
     }
 
     async getProduct (req, res){
+        const {id} = req.params
+        const result = await Product.findOne(
 
+            {
+                attributes: ["idProduct", "weight", "size", "idManufacturer", "price", "category", "img", "description"],
+                where: {idProduct:id},
+            }
+        )
+        return res.json(result)
     }
 
 }

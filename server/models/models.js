@@ -4,9 +4,9 @@ const {DataTypes} = require("sequelize")
 // 1
 const User = sequelize.define("user", {
     idUser: {type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true},
-    phoneNumber: {type: DataTypes.BIGINT, allowNull: false, unique:true},
+    login: {type: DataTypes.STRING, allowNull: false, unique:true},
     password: {type: DataTypes.STRING, allowNull: false},
-    role: {type: DataTypes.STRING, allowNull: false},
+    role: {type: DataTypes.STRING,  defaultValue: "USER"},
 }, {
     timestamps: false,
     tableName: "user"
@@ -121,6 +121,7 @@ const Product = sequelize.define( "product", {
     price: {type: DataTypes.DOUBLE, allowNull: false},
     category: {type: DataTypes.STRING, allowNull: false},
     img: {type: DataTypes.STRING},
+    description: {type: DataTypes.STRING},
 }, {
     timestamps: false,
     tableName: "product"
