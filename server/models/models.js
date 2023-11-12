@@ -122,6 +122,7 @@ const Product = sequelize.define( "product", {
     category: {type: DataTypes.STRING, allowNull: false},
     img: {type: DataTypes.STRING},
     description: {type: DataTypes.STRING},
+    name: {type: DataTypes.STRING},
 }, {
     timestamps: false,
     tableName: "product"

@@ -9,7 +9,7 @@ export default class ProductStore {
         makeAutoObservable(this)
     }
 
-    setDevices(products) {
+    setProduct(products) {
         this.product = products
     }
 

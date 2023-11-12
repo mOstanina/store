@@ -20,7 +20,7 @@ class UserController {
         }
 
         const isUser = await User.findOne({
-            // attributes: ["idUser", "login", "password", "role"],
+            attributes: ["idUser", "login", "password", "role"],
             where: {login}
         })
         if (isUser) {

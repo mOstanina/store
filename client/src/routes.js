@@ -1,7 +1,7 @@
 import {
     ADMIN_PANEL_ROUTE,
     AUTHORIZATION_ROUTE,
-    DEVICE_ROUTE,
+    PRODUCT_ROUTE,
     ONLINE_STORE_ROUTE,
     REGISTRATION_ROUTE
 } from "./utils/constants";
@@ -31,7 +31,7 @@ export const publicRoutes = [
         Component: <Authorization />
     },
     {
-        path: DEVICE_ROUTE + '/:id',
+        path: PRODUCT_ROUTE + '/:id',
         Component: <Product />
     },
 ]
