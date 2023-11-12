@@ -7,7 +7,6 @@ import {Context} from "../index";
 
 const ApplicationRouter = observer(() =>  {
     const {user} = useContext(Context)
-    console.log("user.isAuth", user.isAuth)
 
     return (
         <Routes>

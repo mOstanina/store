@@ -8,12 +8,12 @@ class ProductController {
     async create(req, res, next){
         try{
             const {weight, size, idManufacturer, price, category, description, name, counts} = req.body
-            const {img} = req.files
+            const {file} = req.files
             let nameFile = uuid.v4() + ".jpeg"
-            img.mv(path.resolve(__dirname, "..", "static", nameFile))
+            file.mv(path.resolve(__dirname, "..", "static", nameFile))
 
             const product = await Product.create({weight, size, idManufacturer, price, category, description, name, img: nameFile})
-            const count = await ProductStock.create({idStock:1, idProduct: product.id, availableProductCount: counts})
+            const count = await ProductStock.create({idStock:1, idProduct: product.idProduct, availableProductCount:100})
             product[count] = count
             return res.json(product)
         } catch (e) {

@@ -1,18 +1,5 @@
-// import {$authHost, $host} from "./index";
 import {REACT_APP_API_URL} from "./index";
 import { jwtDecode } from "jwt-decode";
-
-// export const registration = async (email, password) => {
-//     const {data} = await $host.post("api/user/registration", {email, password, role: 'ADMIN'})
-//     localStorage.setItem("token", data.token)
-//     return jwt_decode(data.token)
-// }
-
-// export const login = async (email, password) => {
-//     const {data} = await $host.post("api/user/login", {email, password})
-//     localStorage.setItem("token", data.token)
-//     return jwt_decode(data.token)
-// }
 
 export async function logIn (login, password) {
 
@@ -40,14 +27,31 @@ export async function logIn (login, password) {
     }
 }
 
-// export const check = async () => {
-//     const {data} = await $authHost.get("api/user/auth" )
-//     localStorage.setItem("token", data.token)
-//     return jwt_decode(data.token)
-// }
+export async function check() {
+    try {
+        const response = await fetch(REACT_APP_API_URL +"api/user/auth", {
+            method: "GET",
+            mode: "cors",
+            cache: "no-cache",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem("token")}`,
+            },
+        });
+        const data = await response.json();
+        if(data.message){
+            console.error("data.message", data.message)
+            return alert(data.message);
+        }
+
+        localStorage.setItem("token", data.token)
+        return jwtDecode(data.token)
+    } catch (error) {
+        alert(error);
+    }
+}
 
 export async function registration(login, password) {
-    // console.log("registration", login)
     try {
         const response = await fetch(REACT_APP_API_URL+"api/user/registration", {
             method: "POST",

@@ -1,5 +1,4 @@
 import {REACT_APP_API_URL} from "./index";
-import {jwtDecode} from "jwt-decode";
 
 export async function fetchProducts() {
     try {
@@ -36,17 +35,15 @@ export const fetchSingleProduct = async (id) => {
 }
 
 export async function createDevice(product) {
-    console.log("createDevice(product)", product)
     try {
         const response = await fetch(REACT_APP_API_URL+"api/product", {
             method: "POST",
             mode: "cors",
             cache: "no-cache",
             headers: {
-                "Content-Type": "application/json",
                 "Authorization": `Bearer ${localStorage.getItem("token")}`,
             },
-            body: JSON.stringify(product),
+            body: product,
         });
         const data = await response.json();
 

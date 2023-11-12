@@ -1,6 +1,4 @@
-import React, {
-    useContext,
-    useState} from "react";
+import React, {useContext, useState} from "react";
 import {observer} from "mobx-react-lite";
 import {useNavigate} from "react-router-dom";
 import {NavLink, useLocation} from "react-router-dom";

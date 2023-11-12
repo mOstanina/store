@@ -21,13 +21,13 @@ const AddProductModal = ({isShow, cbClose}) => {
         formData.append("idManufacturer", idManufacturer);
         formData.append("category", category);
         formData.append("price", `${price}`);
-        formData.append("img", file);
+        formData.append("file", file);
         formData.append("description", description);
         formData.append("count", count);
         for (var key of formData.entries()) {
             console.log(key[0] + ', ' + key[1]);
         }
-        createDevice({formData}).then(() => cbClose());
+        createDevice(formData).then(() => cbClose());
     }
 
     const selectFile = e => {
