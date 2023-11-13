@@ -40,8 +40,7 @@ export async function check() {
         });
         const data = await response.json();
         if(data.message){
-            console.error("data.message", data.message)
-            return alert(data.message);
+            return data;
         }
 
         localStorage.setItem("token", data.token)

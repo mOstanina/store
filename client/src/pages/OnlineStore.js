@@ -1,5 +1,4 @@
 import React, {useContext, useEffect, useState} from "react";
-import {useNavigate} from 'react-router-dom'
 import {Container, Row} from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 import SideBar from "../compoents/SideBar";
@@ -10,13 +9,13 @@ import {observer} from "mobx-react-lite";
 
 const OnlineStore = observer(() => {
     const {product} = useContext(Context)
-    const navigate = useNavigate();
     const [selectedCategory, setSelectedCategory] = useState('')
     const cbSetCategory = (category) =>{
         setSelectedCategory(category)
     }
 
     useEffect(() => {
+        console.log("render")
         fetchProducts().then(data => {
             product.setProduct(data.rows)
             product.setTotalCount(data.count)

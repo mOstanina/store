@@ -11,9 +11,16 @@ const App = observer(() => {
     const {user} = useContext(Context)
 
     useEffect(() => {
-        const responce = check().then(data => {
-            user.setUser(true)
-            user.setIsAuth(true)
+        check().then(data => {
+            console.log('data', data)
+            if (data.message) {
+                user.setUser({})
+                user.setIsAuth(false)
+                localStorage.setItem("token", "")
+            } else {
+                user.setUser(data)
+                user.setIsAuth(true)
+            }
         })
 
     }, [])

@@ -8,7 +8,6 @@ import {observer} from "mobx-react-lite";
 const NavigationPanel = observer(() => {
     const navigate = useNavigate();
     const {user} = useContext(Context)
-
     const logOut = () => {
         user.setUser({})
         user.setIsAuth(false)
@@ -18,7 +17,9 @@ const NavigationPanel = observer(() => {
     return (
         <Navbar bg="light" data-bs-theme="light">
             <Container>
-                <Navbar.Brand href={ONLINE_STORE_ROUTE}>OnlineStore</Navbar.Brand>
+                <Navbar.Brand onClick={() => navigate(ONLINE_STORE_ROUTE)} style={{cursor: "pointer"}}>
+                    OnlineStore
+                </Navbar.Brand>
                 {user.isAuth ?
                     <Nav className="ml-auto">
                         <Nav.Link

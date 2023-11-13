@@ -13,9 +13,7 @@ root.render(
         product: new ProductStore()
     }}
     >
-        <React.StrictMode>
-            <App />
-        </React.StrictMode>
+        <App />
     </Context.Provider>
 );
 
